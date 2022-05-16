@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'profile_screen.dart';
 //import './products.dart';
 
@@ -18,6 +19,20 @@ class _LoginScreenState extends State<LoginScreen> {
   void _togglePasswordView() {
     setState(() {
       _isHidden = !_isHidden;
+    });
+  }
+
+  void _handleRemeberme(bool value) {
+    _rememberMe = value;
+    SharedPreferences.getInstance().then(
+      (prefs) {
+        prefs.setBool("remember_me", value);
+        prefs.setString('email', _emailController.text);
+        prefs.setString('password', _passwordController.text);
+      },
+    );
+    setState(() {
+      _rememberMe = value;
     });
   }
 
@@ -98,10 +113,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           children: [
                             Checkbox(
+                              activeColor: Colors.blue,
                               value: _rememberMe,
                               onChanged: (value) {
+                                _rememberMe = value!;
+                                SharedPreferences.getInstance().then(
+                                  (prefs) {
+                                    prefs.setBool("remember_me", value);
+                                    print({value});
+                                  },
+                                );
                                 setState(() {
-                                  _rememberMe = value!;
+                                  _rememberMe = value;
                                 });
                               },
                             ),
