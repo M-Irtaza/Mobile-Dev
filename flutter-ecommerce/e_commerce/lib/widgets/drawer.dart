@@ -1,3 +1,4 @@
+import 'package:e_commerce/global/global.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -21,12 +22,13 @@ class _MyDrawerState extends State<MyDrawer> {
           child: Column(
             children: [
               //user profile image
-              Container(
+              SizedBox(
                 height: 130,
                 width: 130,
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(
-                      "https://image.shutterstock.com/image-vector/simple-web-icon-vector-address-260nw-253758850.jpg"),
+                    sharedPreferences!.getString("photoUrl")!,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -34,8 +36,8 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
               //user name
               Text(
-                "User Name",
-                style: TextStyle(
+                sharedPreferences!.getString("name")!,
+                style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

@@ -1,11 +1,16 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/global/global.dart';
 import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fStorage;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../mainScreens/home_screen.dart';
 
 class RegistrationTabPage extends StatefulWidget {
   @override
@@ -83,7 +88,33 @@ class _RegistrationTabPageState extends State<RegistrationTabPage> {
 
     if (currentUser != null) {
       //save info to database and save info locally using shared preferences
+
+      saveToFirebaseAndLocal(currentUser!);
     }
+  }
+
+  saveToFirebaseAndLocal(User currentUser) async {
+    //to firestore
+    FirebaseFirestore.instance.collection("users").doc(currentUser.uid).set({
+      "uid": currentUser.uid,
+      "email": currentUser.email,
+      "name": nameTextEditingController.text.trim(),
+      "photoUrl": downloadImageUrl,
+      "status": "approved",
+      "userCart": ["initialValue"],
+    });
+
+    //to local storage
+
+    sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences!.setString("uid", currentUser.uid);
+    await sharedPreferences!.setString("email", currentUser.email!);
+    await sharedPreferences!
+        .setString("name", nameTextEditingController.text.trim());
+    await sharedPreferences!.setString("photoUrl", downloadImageUrl);
+    await sharedPreferences!.setStringList("userCart", ["initialValue"]);
+
+    Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
   }
 
   @override
