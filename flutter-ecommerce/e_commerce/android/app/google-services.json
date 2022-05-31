@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "676155199169",
+    "project_id": "ishop-6f8ba",
+    "storage_bucket": "ishop-6f8ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676155199169:android:85da054e3304e1ed5d4e40",
+        "android_client_info": {
+          "package_name": "com.shaider.e_commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676155199169-9ugdppuut5eprhm6oppk5lgq5aieo1nc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTxulp9rYwOLe0UT3YMyIuOEX6BASsMAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676155199169-9ugdppuut5eprhm6oppk5lgq5aieo1nc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
