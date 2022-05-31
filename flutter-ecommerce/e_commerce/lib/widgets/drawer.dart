@@ -1,4 +1,8 @@
+import 'package:e_commerce/authScreens/auth_screen.dart';
 import 'package:e_commerce/global/global.dart';
+import 'package:e_commerce/splashScreen/splash_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -167,7 +171,10 @@ class _MyDrawerState extends State<MyDrawer> {
                   "Log Out",
                   style: TextStyle(color: Colors.grey),
                 ),
-                onTap: () {},
+                onTap: () {
+                  FirebaseAuth.instance.signOut(); 
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => MySplashScreen ()));
+                },
               ),
 
               const Divider(

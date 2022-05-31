@@ -14,8 +14,13 @@ class LoadingDialogWidget extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.center,
-            //doing
+            padding: EdgeInsets.only(top:14),
+            child:  const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
+            ),
           ),
+
+          Text(message.toString() + "Please wait..."),
         ],
       ),
     );

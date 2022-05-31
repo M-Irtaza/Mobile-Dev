@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/global/global.dart';
+import 'package:e_commerce/splashScreen/splash_screen.dart';
 import 'package:e_commerce/widgets/custom_text_field.dart';
+import 'package:e_commerce/widgets/loading_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -47,6 +49,10 @@ class _RegistrationTabPageState extends State<RegistrationTabPage> {
             emailTextEditingController.text.isNotEmpty &&
             passwordTextEditingController.text.isNotEmpty &&
             confirmPasswordTextEditingController.text.isNotEmpty) {
+
+          showDialog(context: context, builder: (c){
+            return LoadingDialogWidget(message: "Registring your account..",);
+          });
           String fileName = DateTime.now().millisecondsSinceEpoch.toString();
           fStorage.Reference storageRef = fStorage.FirebaseStorage.instance
               .ref()
@@ -64,6 +70,7 @@ class _RegistrationTabPageState extends State<RegistrationTabPage> {
 
           saveInfoToDatabase();
         } else {
+          Navigator.pop(context);
           Fluttertoast.showToast(msg: "Please complete the form.");
         }
       } else {
@@ -83,6 +90,7 @@ class _RegistrationTabPageState extends State<RegistrationTabPage> {
         .then((auth) {
       currentUser = auth.user;
     }).catchError((errorMessage) {
+       Navigator.pop(context);
       Fluttertoast.showToast(msg: "Error : \n $errorMessage");
     });
 
@@ -114,7 +122,7 @@ class _RegistrationTabPageState extends State<RegistrationTabPage> {
     await sharedPreferences!.setString("photoUrl", downloadImageUrl);
     await sharedPreferences!.setStringList("userCart", ["initialValue"]);
 
-    Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (c) => MySplashScreen()));
   }
 
   @override

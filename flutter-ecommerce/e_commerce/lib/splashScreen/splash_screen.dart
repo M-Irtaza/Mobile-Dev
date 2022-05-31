@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:e_commerce/authScreens/auth_screen.dart';
 import 'package:e_commerce/mainScreens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MySplashScreen extends StatefulWidget {
@@ -10,8 +12,15 @@ class MySplashScreen extends StatefulWidget {
 
 class _MySplashScreenState extends State<MySplashScreen> {
   splashScreenTimer() {
-    Timer(const Duration(seconds: 4), () async {
+    Timer(const Duration(seconds: 2), () async {
+      if (FirebaseAuth.instance.currentUser != null) {
       Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+
+      }
+      else {
+      Navigator.push(context, MaterialPageRoute(builder: (c) => AuthScreen()));
+
+      }
     });
   }
 
