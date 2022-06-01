@@ -2,6 +2,7 @@ import 'package:e_commerce/screens/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/cart.dart';
 import '../models/products.dart';
 
 class ProductItem extends StatelessWidget {
@@ -16,7 +17,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
-
+    final cart = Provider.of<Cart>(context);
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
@@ -35,7 +36,12 @@ class ProductItem extends StatelessWidget {
               icon: Icon(
                 Icons.shopping_cart,
               ),
-              onPressed: null,
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    duration: Duration(milliseconds: 50),
+                    content: Text("Item Added to Cart")));
+                cart.addItem(product.id!, product.name!, product.price!);
+              },
             ),
             backgroundColor: Colors.purpleAccent,
           ),

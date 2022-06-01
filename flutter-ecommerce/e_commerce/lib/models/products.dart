@@ -21,16 +21,6 @@ class Product with ChangeNotifier {
 class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
-      id: '1',
-      name: 'Art Of The Deal',
-      imgUrl:
-          'https://upload.wikimedia.org/wikipedia/en/1/1c/Trump_the_art_of_the_deal.jpg',
-      price: 5,
-      category: 'Business',
-      description:
-          'Trump: The Art of the Deal is a 1987 book credited to Donald J. Trump and journalist Tony Schwartz. Part memoir and part business-advice book, it was the first book credited to Trump, and helped to make him a "household name".',
-    ),
-    Product(
       id: '2',
       name: 'Rich Dad Poor Dad',
       imgUrl:

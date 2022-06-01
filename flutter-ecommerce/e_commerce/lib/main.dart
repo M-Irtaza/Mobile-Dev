@@ -1,6 +1,8 @@
 import 'package:e_commerce/authScreens/auth_screen.dart';
 import 'package:e_commerce/global/global.dart';
+import 'package:e_commerce/models/cart.dart';
 import 'package:e_commerce/models/products.dart';
+import 'package:e_commerce/screens/cart_screen.dart';
 import 'package:e_commerce/screens/product_detail_screen.dart';
 import 'package:e_commerce/splashScreen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider.value(value: Products())],
+      providers: [
+        ChangeNotifierProvider.value(value: Products()),
+        ChangeNotifierProvider.value(value: Cart())
+      ],
       child: MaterialApp(
         title: 'E-Commerce App',
         theme: ThemeData(
@@ -34,7 +39,10 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         home: MySplashScreen(),
-        routes: {DetailPage.routeName: (context) => DetailPage()},
+        routes: {
+          DetailPage.routeName: (context) => DetailPage(),
+          CartScreen.routeName: (context) => CartScreen()
+        },
       ),
     );
   }

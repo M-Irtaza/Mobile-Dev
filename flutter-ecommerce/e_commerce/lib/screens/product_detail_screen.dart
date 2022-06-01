@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:e_commerce/models/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/products.dart';
@@ -11,6 +12,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)!.settings.arguments as String;
     final loadedProduct = Provider.of<Products>(context).findById(productId);
+    final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedProduct.name!),
@@ -43,7 +45,9 @@ class DetailPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: () {
+          cart.addItem(productId, loadedProduct.name!, loadedProduct.price!);
+        },
         child: Icon(
           Icons.shopping_cart,
           size: 30,

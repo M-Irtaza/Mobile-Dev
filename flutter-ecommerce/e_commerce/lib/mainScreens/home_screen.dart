@@ -1,3 +1,4 @@
+import 'package:e_commerce/screens/cart_screen.dart';
 import 'package:e_commerce/widgets/drawer.dart';
 import 'package:e_commerce/widgets/home_body.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(CartScreen.routeName),
+                icon: Icon(Icons.shopping_cart))
+          ],
         ),
         body: Container(color: Colors.white, child: HomeBody()));
   }

@@ -14,7 +14,7 @@ class AllProducts extends StatelessWidget {
         shrinkWrap: true,
         itemCount: pdts.length,
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         itemBuilder: (ctx, i) {
           return ChangeNotifierProvider.value(
             value: pdts[i],

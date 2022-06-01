@@ -43,6 +43,7 @@ dependencies:
   fluttertoast: ^8.0.9
   shared_preferences: ^2.0.15
   provider: ^6.0.3
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
@@ -72,7 +73,8 @@ flutter:
     - assets/pictures/login.png
     - assets/pictures/login1.jpg
     - assets/pictures/admin.png
-    - assets/pictures/cash.png    
+    - assets/pictures/cash.png
+    - assets/pictures/book.png  
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
